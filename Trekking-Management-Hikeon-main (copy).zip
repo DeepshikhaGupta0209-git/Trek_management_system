@@ -1,0 +1,25 @@
+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
+# 1. Unzip fresh
+cd ~/Downloads
+unzip -o threat_detection_system.zip -d threat_system
+cd threat_system
+
+# 2. Virtual environment
+python3 -m venv venv
+source venv/bin/activate
+
+# 3. System audio libs (Debian)
+sudo apt-get update
+sudo apt-get install -y portaudio19-dev python3-pyaudio
+
+# 4. Python deps
+pip install -r requirements.txt
+
+# 5. Your key (get one free at console.groq.com/keys)
+export GROQ_API_KEY="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"
+
+# 6. Quick sanity check first (recommended) — confirms the model responds correctly
+python test_vision.py
+
+# 7. If that prints THREAT:knife correctly, run the full real-time system
+python main.py
